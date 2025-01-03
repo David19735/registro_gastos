@@ -114,7 +114,6 @@ const RegistroUsuarios = () => {
                 setMensaje(mensaje)
                 break;    
             }
-            console.log(mensaje);
             
         }
         

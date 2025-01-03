@@ -1,9 +1,12 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {Header, Titulo} from '../elementos/Header';
 import { Helmet } from 'react-helmet';
 import BtnRegresar from '../elementos/BtnRegresar';
+import { useAuth } from '../contextos/AuthContext';
+
 
 const ListaDeGastos = () => {
+
     return (  
         <>
         <Helmet>

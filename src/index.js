@@ -13,6 +13,8 @@ import EditarGasto from './componentes/EditarGasto';
 import { Helmet } from 'react-helmet';
 import favicon from './imagenes/logo.png'
 import Fondo from './elementos/Fondo';
+import { AuthProvider,AuthContext } from './contextos/AuthContext';
+import RutaPrivada from './componentes/RutaPrivada';
 
   WebFont.load({
     google: {
@@ -27,18 +29,48 @@ const  Index= () => {
       <link rel='shortcut icon' href={favicon} type='image/x-icon'></link>
     </Helmet>
 
+     <AuthProvider>
      <BrowserRouter>
         <Contenedor>
           <Routes>
-            <Route path='/' element={<App/>}/>
-            <Route path='/editar/:id' element={<EditarGasto/>}/>
-            <Route path='/categorias' element={<GastosPorCategoria/>}/>
+
             <Route path='/iniciar-sesion' element={<InicioSesion/>}/>
-            <Route path='/lista' element={<ListaDeGastos/>}/>
             <Route path='/crear-cuenta' element={<RegistroUsuarios/>}/>
+
+            <Route path='/' element={
+              <RutaPrivada>
+                <App/>
+              </RutaPrivada>
+            }/>
+
+
+            <Route
+              path='/categorias' element={
+                <RutaPrivada>
+                  <GastosPorCategoria/>
+                </RutaPrivada>
+              }
+            />
+
+            <Route
+            path='/lista' element={
+              <RutaPrivada>
+                <ListaDeGastos/>
+              </RutaPrivada>
+            }
+            />
+
+            <Route
+              path='/editar/:id' element={
+                <RutaPrivada>
+                  <EditarGasto/>
+                </RutaPrivada>
+              }
+            />
           </Routes>
         </Contenedor>
     </BrowserRouter>
+     </AuthProvider>
 
     <Fondo/>
     </>
